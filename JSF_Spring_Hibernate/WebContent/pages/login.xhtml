@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>login</title>
+	<!-- Latest compiled and minified CSS -->
+<h:link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></h:link>
+
+<!-- Optional theme -->
+<h:link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"></h:link>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</h:head>
+<h:body>
+
+
+
+<style>
+*{
+font-family: helvetica ; 
+}
+</style>
+	<h:form>
+	
+	<p style="color: ; text-align: center;font-size: 30px; ">This page is protected</p>
+		<h1 style="color: ; text-align: center;font-size: 60px; ">AUTHENTIFICATION REQUIRED</h1>
+		<hr/>
+		
+		
+		<br/>
+		<h:outputLabel for="username" value="Username:" />
+		<br />
+		<p:inputText id="username" value="#{login.user}"></p:inputText>
+		<p:message for="username"></p:message>
+		<br />
+		
+		
+		
+		
+		<h:outputText value="Password" />
+		<br />
+		<p:password id="password" value="#{login.pwd}"></p:password>
+		<p:message for="password"></p:message>
+		<p:messages autoUpdate="true" />
+		
+			<h:link>add new user</h:link> | 
+			<h:link>forget password</h:link>
+			<br/><br/>
+		<h:commandButton action="#{login.validateUsernamePassword}" value="Login" ></h:commandButton>
+		
+	</h:form>
+	
+
+	
+
+</h:body>
+</html>

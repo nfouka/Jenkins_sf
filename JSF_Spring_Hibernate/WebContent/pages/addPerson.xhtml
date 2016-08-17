@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>login</title>
+</h:head>
+<h:body>
+<style>
+*{
+font-family: helvetica ; 
+}
+</style>
+	
+	
+	 <h:form id="loginForm">
+ 
+           
+            <p:growl id="msg" showDetail="true" life="3000" />
+            <p:panel header="Add Person" style="width: 560px;">
+ 
+                <h:panelGrid id="loginPanel" columns="3">
+ 
+                    <h:outputText value="Name" /><br/>
+ 
+                    <p:inputText id="name" value="#{person.name}" ></p:inputText>
+ 
+                    
+ 
+                    <p:message for="name" ></p:message>
+                    
+                    
+                     <h:outputText value="Country" /><br/>
+ 
+                    <p:inputText id="country" value="#{person.country}" ></p:inputText>
+ 
+                  
+ 
+                    <p:message for="country" ></p:message>
+
+ 					 <h:outputText for="button" value="Begin" /><nr/>
+        			<p:calendar id="button" value="#{person.date}" showOn="button" />
+                    
+        			<br/>
+                    <h:commandButton action="#{personService.addPerson(person)}" value="Add Person" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" ></h:commandButton>
+                    
+                    
+                    
+                    
+ 
+                </h:panelGrid>
+ 
+            </p:panel>
+ 
+        </h:form>
+	
+
+</h:body>
+</html>

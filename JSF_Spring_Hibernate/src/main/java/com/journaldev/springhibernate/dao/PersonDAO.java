@@ -7,6 +7,6 @@ import com.journaldev.springhibernate.model.Person;
 public interface PersonDAO {
  
     public void addPerson(Person p);
-    public void deletePerson(int id) ; 
+    public void deletePerson(Person p) ; 
     public List<Person> listPersons();
 }

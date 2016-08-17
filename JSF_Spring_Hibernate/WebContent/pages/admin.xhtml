@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>JSF Spring Hibernate Integration</title>
+</h:head>
+<h:body>
+
+<h:form style="text-align:right;">
+		<img src=""/>
+		<p>Welcome #{login.user}</p>
+		
+		<h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+</h:form>
+
+<style>
+*{
+font-family: helvetica ;
+}
+</style>
+
+					
+
+    <p:dataTable id="dataTable" var="person" value="#{personService.listPersons()}"
+    				emptyMessage="Empty..." editable="true" paginator="true"
+					rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15,20,25,50,100" selectionMode="single"
+					rowKey="#{person.id}"
+    			 	styleClass="et_datatable"
+    			 	widgetVar="carsTable"
+                 	>
+                 	
+                 	<f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('person').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+                 	
+     
+ 
+   			<p:column filterBy="#{person.id}" headerText="Id" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{person.id}" />
+        </p:column>
+        
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Name" />
+            </f:facet>
+            <h:outputText value="#{person.name}" />
+        </p:column>
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Country" />
+            </f:facet>
+            <h:outputText value="#{person.country}" />
+        </p:column>
+        
+         <p:column>
+            <f:facet name="header">
+                <h:outputText value="Date" />
+            </f:facet>
+            <h:outputText value="#{person.date}">
+    			<f:convertDateTime pattern="MM/dd/yyyy hh:mm:ss" type="date" />
+			</h:outputText>
+        </p:column>
+        
+        
+          <p:column>
+            <f:facet name="header">
+                <h:outputText value="delete" />
+            </f:facet>
+         
+         <p:commandLink value="Delete" action="#{personService.deletePerson(person)}" >
+    		
+		</p:commandLink>  
+				
+        </p:column>
+        
+
+         
+    </p:dataTable>
+    
+ 
+	
+	
+	
+	<p:chart type="line" model="#{chartView.multiAxisModel}" style="height:400px;"/>
+	
+	
+</h:body>
+</html>

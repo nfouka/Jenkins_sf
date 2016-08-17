@@ -8,6 +8,6 @@ public interface PersonService {
  
     public void addPerson(Person p);
     public List<Person> listPersons();
-    public void deletePerson(int id) ; 
+    public void deletePerson(Person p) ; 
      
 }

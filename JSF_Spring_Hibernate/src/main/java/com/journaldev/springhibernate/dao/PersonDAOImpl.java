@@ -2,6 +2,8 @@ package com.journaldev.springhibernate.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -14,7 +16,8 @@ import com.journaldev.springhibernate.model.Person;
 public class PersonDAOImpl implements PersonDAO{
 	
 	private static final Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
-	 
+	
+	@Inject
     private SessionFactory sessionFactory;
      
     public void setSessionFactory(SessionFactory sf){
@@ -40,13 +43,12 @@ public class PersonDAOImpl implements PersonDAO{
     }
 
 	@Override
-	public void deletePerson(int id) {
+	public void deletePerson(Person p) {
 		// TODO Auto-generated method stub
 		 Session session = sessionFactory.openSession() ; 
-		 Person Person = (Person)session.load(Person.class,id);
-		 session.delete(Person);
+		 session.delete(p);
 		 session.flush() ;
-		 logger.info("Person List entity with id :"+id);
+		 
 	}
  
 }

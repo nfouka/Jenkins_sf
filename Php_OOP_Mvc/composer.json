@@ -1,0 +1,14 @@
+{
+    "name": "test",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "nadir",
+    "contributors": [],
+    "dependencies": {},
+    "require": {
+        "symfony/console": "^3.1",
+        "doctrine/orm": "^2.5",
+        "symfony/yaml": "^3.1",
+        "symfony/config": "^3.1"
+    }
+}

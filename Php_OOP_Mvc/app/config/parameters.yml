@@ -1,0 +1,6 @@
+dbname : symfony2
+user : root
+password : root
+host : localhost
+port : 3306
+driver : pdo_mysql 

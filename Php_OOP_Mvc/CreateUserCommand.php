@@ -119,6 +119,39 @@ $rep = $em->getRepository('src\Product')->findAll() ;
 print_r($rep) ; 
 
 
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\MessageSelector;
+use Symfony\Component\Translation\Loader\YamlFileLoader;
+use Symfony\Component\Translation\Dumper\JsonFileDumper;
+
+$translator = new Translator('es_ES');
+ 
+$translator->addLoader('array', new \Symfony\Component\Translation\Loader\ArrayLoader());
+ 
+$translator->addResource('array', array(
+    'hello world!' => '¡hola mundo!',
+    'hello %name%!' => '¡hola %name%!'
+), 'es_ES');
+
+$translator->addResource('array', array(
+    'hello world!' => 'salut tout le monde',
+    'hello %name%!' => 'salut %name%!'
+), 'fr_FR');
+ 
+$translator->addResource('array', array(
+    'hello world!' => 'Olá mundo!',
+    'hello %name%!' => 'Olá %name%!'
+), 'pt');
+ 
+$translator = new Translator('es_ES');
+$translator->addLoader('yaml', new YamlFileLoader());
+ 
+$translator->addResource('yaml', __DIR__ . '/app/translations/messages.es_ES.yml' , 'es_ES');
+$translator->addResource('yaml', __DIR__ . '/app/translations/messages.fr_FR.yml' , 'fr_FR');
+ 
+var_dump($translator->trans('hello'));
+
+
 $application    = new Application();
 $application->add(new CreateUserCommand(
         \Symfony\Component\Yaml\Yaml::parse(file_get_contents(__DIR__.'/app/config/parameters.yml'))

@@ -1,0 +1,6 @@
+services:
+    app.mailer:
+        class:  src\utils\Utils
+
+    app.mailer2:
+        class:  src\utils\AwareContainer

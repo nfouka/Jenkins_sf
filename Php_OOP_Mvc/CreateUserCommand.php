@@ -3,6 +3,9 @@
 require_once "bootstrap.php";
 require './vendor/autoload.php';
 require_once 'src/Product.php';
+require './src/utils/Utils.php';
+require './src/Model/user.php' ; 
+require 'GetConnectionDoctrine.php' ; 
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,7 +16,9 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\Loader\DelegatingLoader;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class CreateUserCommand extends Command
 {
@@ -54,14 +59,15 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $i
     {
         
         $entityManager = $this->em ; 
-        
+        $style = new OutputFormatterStyle('yellow', 'red');
+        $output->getFormatter()->setStyle('fire', $style);
        
         for($i=0 ; $i< $input->getArgument('n'); $i++) {
         $product = new \src\Product() ; 
         $product->setName("Product N°". rand(0, 999999));
         $entityManager->persist($product);
         $entityManager->flush();
-         $output->write('create a user. id '.$i."\n");
+         $output->write('<fire>create a user. id '.$i."<fire>\n");
         }
         
         
@@ -107,9 +113,16 @@ try {
         }
 }
 
-$application = new Application();
+
+$em = $container->get('doctrine.manager')->getEntityManager()  ;  
+$rep = $em->getRepository('src\Product')->findAll() ;
+print_r($rep) ; 
+
+
+$application    = new Application();
 $application->add(new CreateUserCommand(
         \Symfony\Component\Yaml\Yaml::parse(file_get_contents(__DIR__.'/app/config/parameters.yml'))
         ) );
 $application->run();
+
 
